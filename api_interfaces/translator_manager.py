@@ -37,6 +37,7 @@ class TranslatorManager():
         self.translation_services[name]['token'] = token
 
         if len(list(self.translation_services.keys())) == 1:
+            self.change_translation_service(name)
         
 
     def change_translation_service(self, name):
