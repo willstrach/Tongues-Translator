@@ -42,11 +42,13 @@ class SideBar(Frame):
         for name, button in self.buttons.items():
             if name == focus_name:
                 button.config(
-                    bg=MAIN_COLOUR
+                    bg=MAIN_COLOUR,
+                    activebackground=MAIN_COLOUR
                 )
             else:
                 button.config(
-                    bg=HIGHLIGHT_COLOUR
+                    bg=HIGHLIGHT_COLOUR,
+                    activebackground=BTN_HIGHLIGHT_COLOUR
                 )
 
 

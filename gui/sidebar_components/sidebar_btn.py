@@ -14,11 +14,11 @@ class SidebarBtn(Button):
             bg=HIGHLIGHT_COLOUR
         )
     
-    def bind_function(event_type, function):
+    def bind_function(self, function):
         ''' Bind a function to the button
 
         Args:
             event_type (str): The tkinter event type
             function (function): A function object to bind to the button 
         '''
-        self.bind(event_type, function)
+        self.bind('<Button-1>', function)
