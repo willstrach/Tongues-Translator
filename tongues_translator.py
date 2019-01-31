@@ -1,6 +1,7 @@
 from api_interfaces.translator_manager import TranslatorManager
 from tkinter import *
 from gui.style_constants import *
+from gui.sidebar import SideBar
 
 
 
@@ -14,8 +15,10 @@ class TonguesTranslator(Tk):
         self.geometry(DEFAULT_WINDOW_SIZE)
 
         self.call('wm', 'iconphoto', self._w, PhotoImage(file='media/icon.png'))
-
+        self.sidebar = SideBar()
+        self.sidebar.add_button('TEST', 'TEST', TOP)
         self.mainloop()
+
 
 if __name__=='__main__':
     window = TonguesTranslator()
