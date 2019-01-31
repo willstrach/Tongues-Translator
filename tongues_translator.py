@@ -4,6 +4,7 @@ from gui.style_constants import *
 from gui.sidebar import SideBar
 from gui.instant_translate import InstantTranslatePage
 from gui.test_page import TestPage
+from config.config_manager import ConfigManager
 
 
 
@@ -12,6 +13,12 @@ class TonguesTranslator(Tk):
     '''
     def __init__(self, *args, **kwargs):
         Tk.__init__(self, *args, **kwargs)
+
+        self.config_manager = ConfigManager()
+        temp_translator_object = TranslatorManager()
+        for provider_defintion in self.config_manager.get_providers()['api_providers']:
+            temp_translator_object.add_translation_service(provider_defintion['name'], provider_defintion['service'], provider_defintion['token'])
+
         self.title('Tongues Translator')
         self.geometry(DEFAULT_WINDOW_SIZE)
 
@@ -19,7 +26,7 @@ class TonguesTranslator(Tk):
         self.sidebar = SideBar()
         self.pages = {}
 
-        self.add_page('Instant Translate', InstantTranslatePage(self, translator=TranslatorManager()))
+        self.add_page('Instant Translate', InstantTranslatePage(self, translator=temp_translator_object))
         self.mainloop()
 
     def add_page(self, name, page):

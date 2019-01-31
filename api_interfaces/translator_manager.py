@@ -29,7 +29,7 @@ class TranslatorManager():
         if service not in list(self.supported_services.keys()):
             raise ValueError(f'{service} is not a recognised service provider. Valid services are contained within the "supported_services" attribute of this object')            
 
-        if name in len(self.translation_services.keys()):
+        if name in list(self.translation_services.keys()):
             raise ValueError(f'{name} already exists!')
 
         self.translation_services[name] = {}
@@ -50,7 +50,7 @@ class TranslatorManager():
             KeyError: If the translator name does not exist
         '''
         if self.translation_services[name]['service'] == 'MS':
-            self._translator = MicrosoftTranslate(translation_services[name]['token'])
+            self._translator = MicrosoftTranslate(self.translation_services[name]['token'])
             self.current_service = name
         
 
