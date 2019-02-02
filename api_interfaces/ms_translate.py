@@ -32,15 +32,15 @@ class MicrosoftTranslate():
         if not response.ok:
             raise requests.exceptions.HTTPError(f'\n\nFailed to contact MS Translator Text API:\n\tResponse returned error:\n\t\t{response.text}')
         returnDict = {}
-        for language in response.json()['translation'].keys():
-            returnDict[language] = response.json()['translation'][language]['name']
+        for language_key in response.json()['translation'].keys():
+            returnDict[response.json()['translation'][language_key]['name']] = language_key
         return returnDict
 
     def get_supported_languages(self):
         ''' A method to get the languages supported by the MS Translator Text API
 
         Returns:
-            dict: A dictionary of supported languages in the form language_tag:name, language tags follow the BCP 47 standard
+            dict: A dictionary of supported languages in the form name:language_tag, language tags follow the BCP 47 standard
         '''
         return self._supported_languages
 
