@@ -46,6 +46,14 @@ class LanguageSelector(Button):
             self.language = self.language_dict[language_selection]
             language_selector_window.destroy()
 
+        def key_press(event):
+            character = event.char
+            if character.isalpha():
+                index = [idx for idx, s in enumerate(language_list) if character == s[0].lower()][0]
+                ls_listbox.selection_clear(0,END)
+                ls_listbox.selection_set(index)
+                ls_listbox.yview(index)
+
         language_selector_window = Tk()
         ls_listbox = Listbox(language_selector_window)
         language_list = sorted(list(self.language_dict.keys()))
@@ -64,10 +72,12 @@ class LanguageSelector(Button):
             bg=HIGHLIGHT_COLOUR,
             text='Select'
         )
-
+        ls_listbox.bind('<Double-Button-1>', ok_click)
+        ls_listbox.bind('<Return>', ok_click)
         ok_button.bind('<Button-1>', ok_click)
+        ls_listbox.bind('<Key>', key_press)
 
         ls_listbox.pack()
         ok_button.pack()
-
+        ls_listbox.focus_force()
         language_selector_window.mainloop()
