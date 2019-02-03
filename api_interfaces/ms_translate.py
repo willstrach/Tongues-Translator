@@ -64,12 +64,12 @@ class MicrosoftTranslate():
 
         # Is translate_from valid?
         if translate_from is not None:
-            if not translate_from in list(self._supported_languages.keys()):
+            if not translate_from in list(self._supported_languages.values()):
                 raise ValueError(f'"{translate_from}" is not a recognised language')
 
         # Is translate_to valid?
         for language in translate_to:
-            if not language in self._supported_languages.keys():
+            if not language in self._supported_languages.values():
                 raise ValueError(f'"{language}" is not a recognised language')
 
         identifier = str(uuid.uuid4())

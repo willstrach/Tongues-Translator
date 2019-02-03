@@ -10,19 +10,27 @@ class LanguageSelector(Button):
         language_dict dict: a list of dictionaries in the form language_name:language_code
     '''
     def __init__(self, master, include_detect=False, language_dict={}, *args, **kwargs):
-        Button.__init__(self, *args, **kwargs)
+        Button.__init__(self, master=master, *args, **kwargs)
         self.language = None
         self.config(
             relief=SUNKEN,
             borderwidth=0,
             highlightthickness=0,
-            bg=HIGHLIGHT_COLOUR
+            bg=HIGHLIGHT_COLOUR,
+            width=20,
+            height=2
         )
+        
         self.include_detect = include_detect
         self.config(text='Select language')
         self.language_dict = language_dict
         if include_detect:
             self.language_dict['DETECT'] = None
+            self.language=None
+            self.config(text='DETECT')
+        else:
+            self.language='en'
+            self.config(text='English')
 
         self.bind('<Button-1>',self._button_click)
 
