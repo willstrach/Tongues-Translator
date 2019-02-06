@@ -1,7 +1,7 @@
 ''' This file contains constants used in the styling of the application
 '''
 
-DEFAULT_WINDOW_SIZE = '1000x700'
+DEFAULT_WINDOW_SIZE = '800x1000'
 
 MAIN_COLOUR = '#d3d3d3'
 

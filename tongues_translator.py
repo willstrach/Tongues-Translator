@@ -3,6 +3,7 @@ from tkinter import *
 from gui.style_constants import *
 from gui.sidebar import SideBar
 from gui.instant_translate import InstantTranslatePage
+from gui.text_file_translate import TextFileTranslate
 from config.config_manager import ConfigManager
 
 
@@ -19,13 +20,14 @@ class TonguesTranslator(Tk):
             temp_translator_object.add_translation_service(provider_defintion['name'], provider_defintion['service'], provider_defintion['token'])
 
         self.title('Tongues Translator')
-        # self.geometry(DEFAULT_WINDOW_SIZE)
+        self.geometry(DEFAULT_WINDOW_SIZE)
 
         self.call('wm', 'iconphoto', self._w, PhotoImage(file='media/icon.png'))
         self.sidebar = SideBar()
         self.pages = {}
 
         self.add_page('Instant Translate', InstantTranslatePage(self, translator=temp_translator_object))
+        self.add_page('Text File Translate', TextFileTranslate(self, translator=temp_translator_object))
         self.mainloop()
 
     def add_page(self, name, page):

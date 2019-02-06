@@ -52,9 +52,11 @@ class LanguageSelector(Button):
                 index = [idx for idx, s in enumerate(language_list) if character == s[0].lower()][0]
                 ls_listbox.selection_clear(0,END)
                 ls_listbox.selection_set(index)
+                ls_listbox.activate(index)
                 ls_listbox.yview(index)
 
         language_selector_window = Tk()
+        language_selector_window.geometry('300x300')
         ls_listbox = Listbox(language_selector_window)
         language_list = sorted(list(self.language_dict.keys()))
 
@@ -77,7 +79,7 @@ class LanguageSelector(Button):
         ok_button.bind('<Button-1>', ok_click)
         ls_listbox.bind('<Key>', key_press)
 
-        ls_listbox.pack()
-        ok_button.pack()
+        ls_listbox.pack(fill=BOTH, expand=True)
+        ok_button.pack(fill=BOTH)
         ls_listbox.focus_force()
         language_selector_window.mainloop()
