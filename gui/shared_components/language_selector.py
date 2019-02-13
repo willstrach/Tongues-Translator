@@ -2,6 +2,7 @@ from tkinter import *
 from gui.style_constants import *
 
 
+
 class LanguageSelector(Button):
     ''' A button for usage as a language selector. Clicking launches a window which allows language to be changed
 
@@ -55,7 +56,9 @@ class LanguageSelector(Button):
                 ls_listbox.activate(index)
                 ls_listbox.yview(index)
 
-        language_selector_window = Tk()
+        language_selector_window = Toplevel(self.winfo_toplevel())
+        language_selector_window.wait_visibility()
+        language_selector_window.grab_set()
         language_selector_window.geometry('300x300')
         ls_listbox = Listbox(language_selector_window)
         language_list = sorted(list(self.language_dict.keys()))
@@ -81,5 +84,4 @@ class LanguageSelector(Button):
 
         ls_listbox.pack(fill=BOTH, expand=True)
         ok_button.pack(fill=BOTH)
-        ls_listbox.focus_force()
-        language_selector_window.mainloop()
+        
